@@ -29,6 +29,8 @@ public class GenerateDataBase {
 			
 			createAllTables();
 			
+			stmt.close();
+			
 		} catch (Exception e) {
 			System.err.println("Error, couldn't connect");
 		}
@@ -85,7 +87,8 @@ public class GenerateDataBase {
 				+ "small_description TEXT,"
 				+ "publishing_house varchar(30) NOT NULL,"
 				+ "publishing_date Date,"
-				+ "price double(3,2) DEFAULT 0.00)");
+				+ "price double(3,2) DEFAULT 0.00,"
+				+ "amount int DEFAULT 1)");
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
