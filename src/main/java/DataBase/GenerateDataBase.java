@@ -59,11 +59,7 @@ public class GenerateDataBase {
 				+ "number int NOT NULL,"
 				+ "postal_code char(5) NOT NULL,"
 				+ "client_dni char(9) NOT NULL)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableAuthor() {
@@ -72,11 +68,7 @@ public class GenerateDataBase {
 				+ "name varchar(30) DEFAULT 'anon',"
 				+ "surname varchar(30),"
 				+ "birthdate Date)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableBook() {
@@ -89,22 +81,14 @@ public class GenerateDataBase {
 				+ "publishing_date Date,"
 				+ "price double(3,2) DEFAULT 0.00,"
 				+ "amount int DEFAULT 1)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableBookAuthorRel() {
 		sql = ("CREATE TABLE book_author_rel("
 				+ "book_isbn char(17) NOT NULL,"
 				+ "author_id int NOT NULL)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableClient() {
@@ -114,11 +98,7 @@ public class GenerateDataBase {
 				+ "surname varchar(30) NOT NULL,"
 				+ "birthdate Date NOT NULL,"
 				+ "member_subscription BOOLEAN DEFAULT false)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableEmployee() {
@@ -130,22 +110,23 @@ public class GenerateDataBase {
 				+ "telephone char(9) NOT NULL,"
 				+ "email varchar(64),"
 				+ "passwd varchar(40) NOT NULL)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableJob() {
 		sql = ("CREATE TABLE job("
 				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "name varchar(30) NOT NULL)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
+		
+		insertTableJob();
+	}
+	
+	private static void insertTableJob() {
+		sql = ("INSERT INTO job(name) VALUES('Cashier'),"
+				+ "('Manager'),"
+				+ "('Boss')");
+		execUpdate();
 	}
 	
 	private static void createTableOrderDetail() {
@@ -156,11 +137,7 @@ public class GenerateDataBase {
 				+ "amount int NOT NULL DEFAULT 1,"
 				+ "member_discount double(2,2) NOT NULL DEFAULT 5.00,"
 				+ "final_price double(3,2) NOT NULL DEFAULT 0.00)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void createTableOrderDHead() {
@@ -170,11 +147,7 @@ public class GenerateDataBase {
 				+ "client_dni char(9) NOT NULL,"
 				+ "address_id int NOT NULL,"
 				+ "order_date Date NOT NULL)");
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		execUpdate();
 	}
 	
 	private static void addForeignKeys() {
@@ -199,9 +172,13 @@ public class GenerateDataBase {
 				+ "FOREIGN KEY(address_id) REFERENCES address(id);");
 		
 		sql = fKAddress + fKBookAuthorRel + fKEmployee + fKOrderDetail + fKOrderHead;
-		
+
+		execUpdate();
+	}
+	
+	private static void execUpdate() {
 		try {
-			stmt.execute(sql);
+			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
