@@ -1,0 +1,13 @@
+bin/
+target/**
+pom.xml.*
+
+.mvn/wrapper/maven-wrapper.jar
+.project
+.classpath
+.settings/
+
+*.sqlite
+*.class
+*.dat
+*.jar
