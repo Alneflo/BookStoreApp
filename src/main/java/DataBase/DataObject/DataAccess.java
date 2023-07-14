@@ -1,4 +1,4 @@
-package DataBase.DataAccess;
+package DataBase.DataObject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
