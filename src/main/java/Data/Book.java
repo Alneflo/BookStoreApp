@@ -1,6 +1,7 @@
 package Data;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Book {
 	private String isbn;
@@ -11,6 +12,7 @@ public class Book {
 	private Date publishingDate;
 	private double price;
 	private int amount;
+	private ArrayList<Author> authors;
 	
 	public Book(String isbn, String title, int minimumAge, String smallDescription, String publishing_house, Date publishingDate, double price, int amount) {
 		this.isbn = isbn;
@@ -21,6 +23,7 @@ public class Book {
 		this.publishingDate = publishingDate;
 		this.price = price;
 		this.amount = amount;
+		authors = new ArrayList<>();
 	}
 
 	public String getIsbn() {
@@ -54,4 +57,17 @@ public class Book {
 	public int getAmount() {
 		return amount;
 	}
+	
+	public void addAuthor(Author author) {
+		this.authors.add(author);
+	}
+	
+	public void removeAuthor(Author author) {
+		this.authors.remove(author);
+	}
+	
+	public ArrayList<Author> getAuthorList(){
+		return authors;
+	}
+	
 }

@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 
 public class SQLiteConnection {
 	private static Connection con;
-	private static final String FILEPATHNAME = "BookStore.db";
+	private static final String FILEPATHNAME = "C:\\Users\\AlejandroNebotFlores\\eclipse-workspace\\BookStore480";
 	
 	public SQLiteConnection() {
 		File database = new File(FILEPATHNAME);
